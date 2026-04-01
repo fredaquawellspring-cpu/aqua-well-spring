@@ -257,47 +257,78 @@
   }
   .nav-phone:hover { background: #fff; }
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 50%, var(--blue-light) 100%);
-    color: #fff;
-    padding: 60px 20px 50px;
-    text-align: center;
+  /* ── HERO CAROUSEL ── */
+  .hero-carousel {
     position: relative;
+    width: 100%;
+    height: 540px;
     overflow: hidden;
+    background: var(--blue-dark);
   }
-  .hero::before {
-    content: '';
+  @media(max-width: 768px) { .hero-carousel { height: 420px; } }
+  @media(max-width: 480px) { .hero-carousel { height: 340px; } }
+
+  .carousel-track {
+    display: flex;
+    width: 500%;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.77,0,0.18,1);
+  }
+  .carousel-slide {
+    width: 20%;
+    height: 100%;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* Overlay with CTA on each slide */
+  .slide-overlay {
     position: absolute;
     inset: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='rgba(255,255,255,.05)' stroke-width='1'/%3E%3C/svg%3E") repeat;
-    pointer-events: none;
+    background: linear-gradient(90deg, rgba(6,61,112,0.72) 0%, rgba(6,61,112,0.35) 60%, rgba(0,0,0,0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 60px;
+    color: #fff;
   }
-  .hero-badge {
+  @media(max-width:768px){ .slide-overlay { padding: 24px 24px; } }
+
+  .slide-overlay .hero-badge {
     display: inline-block;
     background: var(--gold);
     color: #000;
     font-weight: 700;
-    font-size: .75rem;
+    font-size: .72rem;
     letter-spacing: 2px;
     padding: 5px 16px;
     border-radius: 20px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     text-transform: uppercase;
+    width: fit-content;
   }
-  .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
+  .slide-overlay h1 {
+    font-size: clamp(1.6rem, 4vw, 2.9rem);
     font-weight: 900;
-    line-height: 1.15;
+    line-height: 1.18;
     margin-bottom: 12px;
-    text-shadow: 0 2px 10px rgba(0,0,0,.3);
+    text-shadow: 0 2px 12px rgba(0,0,0,.5);
+    max-width: 640px;
   }
-  .hero h1 span { color: var(--cyan); }
-  .hero-sub {
-    font-size: 1.1rem;
-    opacity: .9;
-    max-width: 600px;
-    margin: 0 auto 30px;
+  .slide-overlay h1 span { color: var(--cyan); }
+  .slide-overlay .hero-sub {
+    font-size: clamp(.9rem, 1.8vw, 1.08rem);
+    opacity: .92;
+    max-width: 520px;
+    margin-bottom: 30px;
+    line-height: 1.6;
   }
   .hero-address {
     display: flex;
@@ -306,10 +337,59 @@
     flex-wrap: wrap;
     font-size: .9rem;
     opacity: .85;
-    margin-bottom: 36px;
+    margin-bottom: 0;
   }
   .hero-address span { display: flex; align-items: center; gap: 6px; }
-  .hero-cta-group { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .hero-cta-group { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Carousel Controls */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,194,224,.85);
+    color: var(--blue-dark);
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s, transform .2s;
+    box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  }
+  .carousel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+  .carousel-btn.prev { left: 18px; }
+  .carousel-btn.next { right: 18px; }
+
+  /* Dots */
+  .carousel-dots {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 9px;
+    z-index: 10;
+  }
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.45);
+    border: none;
+    cursor: pointer;
+    transition: background .3s, transform .3s;
+    padding: 0;
+  }
+  .carousel-dot.active {
+    background: var(--cyan);
+    transform: scale(1.3);
+  }
   .btn-primary {
     background: var(--cyan);
     color: var(--blue-dark);
@@ -685,18 +765,90 @@
 
 <main id="main-content">
 
-<section class="hero" id="inicio" aria-label="Aqua Well Spring – Filtros de Agua Houston TX">
-  <div class="hero-badge">⏰ Oferta por Tiempo Limitado · Limited Time Offer</div>
-  <h1>Agua Pura Para<br><span>Tu Familia en Houston</span></h1>
-  <p class="hero-sub">Filtros de Agua para Toda la Casa · Whole House Water Filters<br>Agua Alcalina · Sin Contaminantes · Instalación Profesional</p>
-  <div class="hero-address">
-    <span>📍 336 Sam Houston Pkwy E, Houston TX 77084</span>
-    <span>📞 832-303-0568</span>
-  </div>
-  <div class="hero-cta-group">
-    <a href="#contacto" class="btn-primary">🆓 Análisis de Agua Gratis</a>
-    <a href="tel:8323030568" class="btn-outline">📞 Llamar Ahora</a>
-    <a href="https://wa.me/18323030568?text=Hola%2C%20me%20interesa%20el%20análisis%20de%20agua%20gratuito." target="_blank" class="btn-outline" style="background:#25d366;border-color:#25d366;color:#fff;">💬 WhatsApp</a>
+<section class="hero-carousel" id="inicio" aria-label="Aqua Well Spring – Filtros de Agua Houston TX">
+  <div class="carousel-track" id="carouselTrack">
+
+    <!-- Slide 1: Pure Water Family -->
+    <div class="carousel-slide">
+      <img src="carousel1.png" alt="Agua Pura Para Tu Familia – Aqua Well Spring Houston TX" loading="eager">
+      <div class="slide-overlay">
+        <span class="hero-badge">⏰ Oferta por Tiempo Limitado · Limited Time Offer</span>
+        <h1>Agua Pura Para<br><span>Tu Familia en Houston</span></h1>
+        <p class="hero-sub">Filtros de Agua para Toda la Casa · Whole House Water Filters<br>Agua Alcalina · Sin Contaminantes · Instalación Profesional</p>
+        <div class="hero-cta-group">
+          <a href="#contacto" class="btn-primary">🆓 Análisis Gratis</a>
+          <a href="tel:8323030568" class="btn-outline">📞 Llamar Ahora</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Alkaline Water -->
+    <div class="carousel-slide">
+      <img src="carousel2.png" alt="Agua Alcalina libre de contaminantes – Aqua Well Spring" loading="lazy">
+      <div class="slide-overlay">
+        <span class="hero-badge">💧 Agua Alcalina · Alkaline Water</span>
+        <h1>Agua Alcalina<br><span>Libre de Contaminantes</span></h1>
+        <p class="hero-sub">Protege a tu familia del agua dura, el sarro y los minerales.<br>Protect your family from hard water, scale, and minerals.</p>
+        <div class="hero-cta-group">
+          <a href="#beneficios" class="btn-primary">Ver Beneficios</a>
+          <a href="https://wa.me/18323030568" target="_blank" class="btn-outline" style="background:#25d366;border-color:#25d366;color:#fff;">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Special Price -->
+    <div class="carousel-slide">
+      <img src="carousel3.png" alt="Precio Especial $3700 – Aqua Well Spring Houston" loading="lazy">
+      <div class="slide-overlay">
+        <span class="hero-badge">🔥 Precio Especial · Special Price</span>
+        <h1>Solo <span>$3,700</span><br>Precio Regular $7,500</h1>
+        <p class="hero-sub">Disponible por solo $57 al mes con Zero Down Payment.<br>Available for just $57/month — financing included.</p>
+        <div class="hero-cta-group">
+          <a href="#contacto" class="btn-primary">Cotizar Ahora</a>
+          <a href="tel:8323030568" class="btn-outline">📞 832-303-0568</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Free Water Test -->
+    <div class="carousel-slide">
+      <img src="carousel4.png" alt="Análisis de Agua Gratis a Domicilio – Houston TX" loading="lazy">
+      <div class="slide-overlay">
+        <span class="hero-badge">🆓 100% Gratuito · FREE</span>
+        <h1>Análisis de Agua<br><span>GRATIS a Domicilio</span></h1>
+        <p class="hero-sub">Visita sin costo en Houston y ciudades a 75 millas.<br>Free in-home water quality test — no obligation.</p>
+        <div class="hero-cta-group">
+          <a href="#contacto" class="btn-primary">Agendar Gratis</a>
+          <a href="https://wa.me/18323030568" target="_blank" class="btn-outline" style="background:#25d366;border-color:#25d366;color:#fff;">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Service Area -->
+    <div class="carousel-slide">
+      <img src="carousel5.png" alt="Servicio 24/7 Houston TX – Aqua Well Spring" loading="lazy">
+      <div class="slide-overlay">
+        <span class="hero-badge">📍 Houston & Área · Service Area</span>
+        <h1>Servicio 24/7<br><span>Houston TX</span></h1>
+        <p class="hero-sub">832-303-0568 · Katy · Sugar Land · Pearland · The Woodlands<br>Call or WhatsApp any time — we're here for you.</p>
+        <div class="hero-cta-group">
+          <a href="tel:8323030568" class="btn-primary">📞 Llamar Ahora</a>
+          <a href="https://wa.me/18323030568" target="_blank" class="btn-outline" style="background:#25d366;border-color:#25d366;color:#fff;">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /carousel-track -->
+
+  <button class="carousel-btn prev" id="prevBtn" aria-label="Slide anterior">&#8249;</button>
+  <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente slide">&#8250;</button>
+
+  <div class="carousel-dots" id="carouselDots">
+    <button class="carousel-dot active" aria-label="Slide 1"></button>
+    <button class="carousel-dot" aria-label="Slide 2"></button>
+    <button class="carousel-dot" aria-label="Slide 3"></button>
+    <button class="carousel-dot" aria-label="Slide 4"></button>
+    <button class="carousel-dot" aria-label="Slide 5"></button>
   </div>
 </section>
 
@@ -970,7 +1122,7 @@
     <a href="#contacto">Contacto</a>
     <a href="https://www.facebook.com/profile.php?id=100091794950631" target="_blank">Facebook</a>
   </nav>
-  <p>📞 832-303-0568 &nbsp;|&nbsp; <a href="mailto:services@aquawellspring.com" style="color:var(--cyan);">services@aquawellspring.com</a> &nbsp;|&nbsp; <a href="https://wa.me/18323030568" target="_blank" style="color:#25d366;">💬 WhatsApp</a></p>
+  <p>📞 832-303-0568 &nbsp;|&nbsp; <a href="/cdn-cgi/l/email-protection#ddaeb8afabb4beb8ae9dbcaca8bcaab8b1b1aeadafb4b3baf3beb2b0" style="color:var(--cyan);"><span class="__cf_email__" data-cfemail="5a293f282c33393f291a3b2b2f3b2d3f3636292a2833343d74393537">[email&#160;protected]</span></a> &nbsp;|&nbsp; <a href="https://wa.me/18323030568" target="_blank" style="color:#25d366;">💬 WhatsApp</a></p>
   <p style="margin-top:14px;">© 2026 Aqua Well Spring. Houston, TX. All rights reserved.</p>
 </footer>
 
@@ -982,7 +1134,36 @@
   </a>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── CAROUSEL ──
+  (function(){
+    const track = document.getElementById('carouselTrack');
+    const dots  = document.querySelectorAll('.carousel-dot');
+    const total = 5;
+    let cur = 0, timer;
+
+    function goTo(idx){
+      cur = (idx + total) % total;
+      track.style.transform = `translateX(-${cur * 20}%)`;
+      dots.forEach((d,i) => d.classList.toggle('active', i===cur));
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', ()=>{ goTo(cur-1); resetTimer(); });
+    document.getElementById('nextBtn').addEventListener('click', ()=>{ goTo(cur+1); resetTimer(); });
+    dots.forEach((d,i) => d.addEventListener('click', ()=>{ goTo(i); resetTimer(); }));
+
+    function resetTimer(){ clearInterval(timer); timer = setInterval(()=>goTo(cur+1), 5000); }
+    resetTimer();
+
+    // Swipe / touch
+    let startX = 0;
+    track.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', e=>{
+      const dx = e.changedTouches[0].clientX - startX;
+      if(Math.abs(dx) > 50){ goTo(dx < 0 ? cur+1 : cur-1); resetTimer(); }
+    }, {passive:true});
+  })();
+
   function toggleFaq(btn) {
     const answer = btn.nextElementSibling;
     const isOpen = answer.classList.contains('open');
@@ -1031,18 +1212,4 @@
         button.innerText = "REINTENTAR · RETRY";
       }
     }).catch(error => {
-      status.innerText = "Error de conexión.";
-      button.disabled = false;
-      button.innerText = "REINTENTAR · RETRY";
-    });
-  }
-  
-  form.addEventListener("submit", handleSubmit);
-
-  function toggleLang() {
-    // Current toggle placeholder
-  }
-</script>
-
-</body>
-</html>
+      status.innerText =

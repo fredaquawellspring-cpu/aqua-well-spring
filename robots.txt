@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aqua-well-spring.com/sitemap.xml
+Sitemap: https://aquawellspring.com/sitemap.xml

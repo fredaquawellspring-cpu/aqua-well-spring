@@ -558,6 +558,44 @@
   .faq-a { display: none; padding: 0 0 18px; color: var(--gray); line-height: 1.7; font-size: .96rem; }
   .faq-a a { color: var(--blue-light); }
   .faq-a.open { display: block; }
+
+  /* ── BLOG ── */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media(max-width:1000px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:640px)  { .blog-grid { grid-template-columns: 1fr; } }
+
+  .blog-card {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.09);
+    background: #fff;
+    border: 1px solid #e2eef8;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(0,0,0,.14); }
+  .blog-card-img { height: 160px; display: flex; align-items: center; justify-content: center; }
+  .blog-card--featured .blog-card-img { height: 200px; }
+  .blog-img-icon { font-size: 3.5rem; filter: drop-shadow(0 2px 8px rgba(0,0,0,.3)); }
+  .blog-card-body { padding: 22px 24px 26px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .blog-tag { display: inline-block; background: var(--gray-light); color: var(--blue-dark); font-size: .72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; width: fit-content; }
+  .blog-card-title { font-size: 1.05rem; font-weight: 800; color: var(--blue-dark); line-height: 1.35; }
+  .blog-card--featured .blog-card-title { font-size: 1.2rem; }
+  .blog-card-title a { color: inherit; text-decoration: none; }
+  .blog-card-title a:hover { color: var(--blue-light); }
+  .blog-card-excerpt { font-size: .9rem; color: var(--gray); line-height: 1.65; flex: 1; }
+  .blog-card-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: .78rem; color: #888; }
+  .blog-read-more { display: inline-block; color: var(--blue-light); font-weight: 700; font-size: .9rem; text-decoration: none; margin-top: 4px; transition: color .2s; }
+  .blog-read-more:hover { color: var(--cyan); }
+  .blog-read-more--disabled { color: #aaa; cursor: default; font-style: italic; }
+  .blog-card--soon { opacity: .82; }
+  .blog-card--soon:hover { transform: none; box-shadow: 0 4px 24px rgba(0,0,0,.09); }
 </style>
 
 <meta name="msvalidate.01" content="4D3C78480B99F07B266597D86E5273A2" />
@@ -572,6 +610,7 @@
     <a href="#beneficios">Beneficios</a>
     <a href="#galeria">Galería</a>
     <a href="#contacto">Contacto</a>
+    <a href="#blog">Blog</a>
     <button class="lang-toggle" onclick="toggleLang()">ES / EN</button>
   </div>
   <a href="tel:8323030568" class="nav-phone">📞 832-303-0568</a>
@@ -947,6 +986,70 @@
   </div>
 </section>
 
+<!-- ══ BLOG SECTION ══ -->
+<section class="section" id="blog" style="background:#fff;">
+  <div class="section-inner">
+    <div class="area-badge">📝 Blog · Consejos de Agua</div>
+    <h2 class="section-title">Blog Informativo · Water Tips Blog</h2>
+    <p class="section-subtitle">Consejos, guías y todo lo que necesitas saber sobre el agua en Houston TX.<br>Tips, guides and everything you need to know about water quality in Houston.</p>
+    <div class="divider"></div>
+    <div class="blog-grid">
+
+      <article class="blog-card blog-card--featured">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue) 60%,var(--cyan) 100%);">
+          <span class="blog-img-icon">💧</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Agua Dura · Hard Water</span>
+          <h3 class="blog-card-title">
+            <a href="blog/agua-dura-houston.html">¿Por Qué el Agua de Houston es Tan Dura? Causas, Efectos y Soluciones</a>
+          </h3>
+          <p class="blog-card-excerpt">El agua de Houston contiene altos niveles de calcio y magnesio. Descubre cómo afecta tu hogar, tu salud y tu bolsillo — y qué puedes hacer para solucionarlo hoy mismo.</p>
+          <div class="blog-card-meta">
+            <span>📅 Abril 2026</span>
+            <span>⏱ 5 min de lectura</span>
+            <span>🌐 ES / EN</span>
+          </div>
+		  <!-- -->
+          <a href="agua-dura-houston.html" class="blog-read-more">Leer artículo completo →</a>
+		 
+        </div>
+      </article>
+
+      <article class="blog-card blog-card--soon">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#063d70 0%,#2d7d46 100%);">
+          <span class="blog-img-icon">🏠</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Beneficios · Benefits</span>
+          <h3 class="blog-card-title">5 Beneficios del Filtro para Toda la Casa que No Conocías</h3>
+          <p class="blog-card-excerpt">Desde proteger tus electrodomésticos hasta mejorar la calidad de tu piel y cabello — un filtro whole house cambia más de lo que imaginas.</p>
+          <div class="blog-card-meta"><span>📅 Próximamente · Coming Soon</span></div>
+          <span class="blog-read-more blog-read-more--disabled">Próximamente…</span>
+        </div>
+      </article>
+
+      <article class="blog-card blog-card--soon">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#063d70 0%,#d4a017 100%);">
+          <span class="blog-img-icon">💰</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Ahorro · Savings</span>
+          <h3 class="blog-card-title">¿Cuánto Dinero Ahorras al Dejar el Agua Embotellada?</h3>
+          <p class="blog-card-excerpt">Una familia promedio en Houston gasta más de $1,200 al año en agua embotellada. Calcula cuánto podrías ahorrar con un sistema de filtración.</p>
+          <div class="blog-card-meta"><span>📅 Próximamente · Coming Soon</span></div>
+          <span class="blog-read-more blog-read-more--disabled">Próximamente…</span>
+        </div>
+      </article>
+
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="#contacto" class="btn-primary">🆓 Solicita tu Análisis de Agua Gratis</a>
+    </div>
+  </div>
+</section>
+<!-- ══ END BLOG ══ -->
+
 </main>
 
 <footer aria-label="Pie de página">
@@ -957,6 +1060,7 @@
     <a href="#beneficios">Beneficios</a>
     <a href="#galeria">Galería</a>
     <a href="#contacto">Contacto</a>
+    <a href="#blog">Blog</a>
     <a href="https://www.facebook.com/aquawellspring" target="_blank">Facebook</a>
   </nav>
  <p>
@@ -976,7 +1080,7 @@
   </a>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── CAROUSEL ──
   document.addEventListener('DOMContentLoaded', function() {
     var track   = document.getElementById('carouselTrack');

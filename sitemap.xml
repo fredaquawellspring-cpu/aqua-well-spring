@@ -4,16 +4,14 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
+  <!-- Homepage -->
   <url>
     <loc>https://www.aquawellspring.com/</loc>
     <lastmod>2026-04-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.aquawellspring.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.aquawellspring.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aquawellspring.com/"/>
-
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aquawellspring.com/"/>
     <image:image>
       <image:loc>https://www.aquawellspring.com/carousel1.png</image:loc>
       <image:title>Agua Pura Para Tu Familia – Aqua Well Spring Houston TX</image:title>
@@ -29,24 +27,24 @@
     </image:image>
   </url>
 
+  <!-- Agua Dura Houston -->
   <url>
     <loc>https://www.aquawellspring.com/agua-dura-houston.html</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.aquawellspring.com/agua-dura-houston.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.aquawellspring.com/agua-dura-houston.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aquawellspring.com/agua-dura-houston.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aquawellspring.com/agua-dura-houston.html"/>
   </url>
-  
+
+  <!-- Beneficios Filtro Agua Houston -->
   <url>
     <loc>https://www.aquawellspring.com/beneficios-filtro-agua-houston.html</loc>
     <lastmod>2026-04-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.aquawellspring.com/beneficios-filtro-agua-houston.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.aquawellspring.com/beneficios-filtro-agua-houston.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aquawellspring.com/beneficios-filtro-agua-houston.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aquawellspring.com/beneficios-filtro-agua-houston.html"/>
   </url>
 
 </urlset>

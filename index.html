@@ -1088,6 +1088,38 @@
 <p style="margin-top:14px;">© 2026 Aqua Well Spring. Houston, TX. All rights reserved.</p>
 </footer>
 
+<!-- ── PROMO POPUP MODAL ── -->
+<div id="promoModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.72);align-items:center;justify-content:center;padding:16px;">
+  <div style="position:relative;max-width:520px;width:100%;animation:popIn .35s cubic-bezier(.175,.885,.32,1.275) both;">
+    <button onclick="closePromo()" aria-label="Close" style="position:absolute;top:-14px;right:-14px;z-index:1;width:34px;height:34px;border-radius:50%;border:none;background:#fff;color:#063d70;font-size:1.3rem;font-weight:900;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35);line-height:1;display:flex;align-items:center;justify-content:center;">✕</button>
+    <img src="flyer-5.png" alt="Limited Launch Offer – Aqua Wellspring" style="width:100%;border-radius:12px;display:block;box-shadow:0 8px 32px rgba(0,0,0,.5);">
+  </div>
+</div>
+<style>
+  @keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+</style>
+<script>
+  (function(){
+    if(!localStorage.getItem('aw_promo_seen_ES')){
+      var modal = document.getElementById('promoModal');
+      modal.style.display = 'flex';
+      localStorage.setItem('aw_promo_seen_ES','1');
+    }
+  })();
+  function closePromo(){
+    document.getElementById('promoModal').style.display='none';
+  }
+  document.getElementById('promoModal').addEventListener('click',function(e){
+    if(e.target===this){closePromo();}
+  });
+</script>
+
+
+
+
+
+
+
 <div class="float-cta-group">
   <a href="tel:8323030568" class="float-cta float-call">📞 Llamar</a>
   <a href="https://wa.me/18323030568?text=Hola%2C%20me%20interesa%20el%20análisis%20de%20agua%20gratuito%20de%20Aqua%20Well%20Spring." target="_blank" class="float-cta float-wa">

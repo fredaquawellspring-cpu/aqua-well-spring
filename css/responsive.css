@@ -1,0 +1,106 @@
+/* Aqua Well Spring · puntos de ruptura
+   1180  el logo y el menu se estrechan
+   980   desaparecen los enlaces del menu, queda el selector de idioma
+   900   el hero y las rejillas de dos columnas pasan a una
+   860   los equipos del hero suben encima del titular
+   760   se oculta el CTA del header, productos a dos por fila,
+         menu del footer a dos columnas, tarjetas de servicios apiladas */
+
+@media (max-width: 860px) {
+  .aws-hero-copy { text-align: center; }
+  .aws-hero-copy h1 { max-width: none !important; }
+  .aws-hero-copy p { max-width: 34ch !important; margin-left: auto !important; margin-right: auto !important; }
+  .aws-hero-copy > div:last-child { justify-content: center !important; }
+}
+
+@media (max-width: 760px) {
+  .aws-sec { text-align: center; }
+  .aws-sec h1, .aws-sec h2, .aws-sec h3, .aws-sec p {
+    margin-left: auto !important; margin-right: auto !important;
+  }
+  .aws-sec h2 { max-width: 20ch !important; }
+  .aws-sec p { max-width: 46ch !important; }
+  /* text-align no alcanza a los hijos de un contenedor flex */
+  .aws-actions { justify-content: center !important; }
+  .aws-card > div { align-items: center !important; }
+  .aws-tiles > div { align-items: center !important; text-align: center !important; }
+  /* esto se queda a la izquierda: se lee mejor asi */
+  .aws-sec li, .aws-sec details, .aws-sec summary, .aws-sec label,
+  .aws-sec table, .aws-sec form { text-align: left; }
+  footer { text-align: center; }
+  footer .aws-foot-nav { justify-items: center; }
+  footer img { margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 1180px) {
+  .aws-hd-logo img { width:200px !important; }
+  .aws-nav { gap:8px 16px !important; margin-left:clamp(12px,2vw,28px) !important; }
+}
+
+@media (max-width: 980px) {
+  html { scroll-padding-top: 178px; }
+  .aws-navlink { display:none !important; }
+  .aws-nav { flex:0 0 auto !important; margin-left:auto !important; }
+}
+
+@media (max-width: 760px) {
+  html { scroll-padding-top: 137px; }
+  /* el header va fijo: en movil cada pixel de alto cuenta */
+  .aws-hd { gap:10px !important; padding:8px 14px !important; }
+  .aws-hd-logo img { width:132px !important; }
+  .aws-hd-cta { display:none !important; }
+  /* el banner de oferta se condensa: precio y CTA, que es lo que convierte */
+  .aws-offer { gap:8px 12px !important; padding:12px 14px !important; font-size:18px !important; }
+  .aws-offer-tag { display:none !important; }
+  .aws-offer-price { font-size:21px !important; }
+  .aws-offer-cta { padding:8px 18px !important; font-size:18px !important; }
+}
+
+@media (max-width: 620px) {
+  .aws-offer-old { display:none !important; }
+}
+
+@media (max-width: 470px) {
+  .aws-offer-mo { display:none !important; }
+}
+
+@media (max-width: 380px) {
+  .aws-offer { font-size:16px !important; gap:6px 10px !important; }
+  .aws-offer-price { font-size:18px !important; }
+  .aws-offer-cta { padding:7px 15px !important; font-size:16px !important; }
+}
+
+@media (max-width: 860px) {
+  /* en movil los 3 equipos van arriba, sobre el titular */
+  .aws-hero-wrap { flex-direction: column !important; align-items: center !important; gap: 18px !important; }
+  .aws-hero-copy { width: 100%; }
+  .aws-hero-side { order: -1 !important; margin-bottom: 0 !important; }
+  .aws-hero-products { width: min(46vw, 190px) !important; }
+  .aws-hero-badge { padding: 9px 16px !important; }
+}
+
+@media (min-width: 901px) {
+  .aws-hero-copy { flex: 0 1 auto !important; max-width: 60% !important; }
+  .aws-hero-side { margin-right: auto !important; }
+}
+
+@media (max-width: 900px) {
+  /* el form y los testimonios pedian pistas de 430/400px dentro de 354px:
+     el wrapper tiene overflow-x:hidden, asi que se recortaban en pantalla */
+  .aws-2col { grid-template-columns:1fr !important; }
+  .aws-sticky { position:static !important; top:auto !important; }
+}
+
+@media (max-width: 760px) {
+  /* tarjetas de Servicios: imagen arriba, texto debajo */
+  .aws-card { grid-template-columns:1fr !important; flex:0 0 88vw !important; }
+  .aws-card-img { order:-1 !important; height:auto !important; min-height:200px !important; max-height:230px !important; }
+  /* productos: dos por fila */
+  .aws-tiles { grid-template-columns:repeat(2,1fr) !important; gap:10px !important; }
+  .aws-tiles > div { padding:18px !important; min-height:150px !important; gap:14px; }
+  .aws-tiles > div > span:first-child { width:44px !important; height:44px !important; border-radius:14px !important; }
+  .aws-tiles > div > span:first-child svg { width:24px; height:24px; }
+  .aws-tiles > div > span:last-child { font-size:14px !important; line-height:1.2 !important; }
+  /* footer: menu en dos columnas */
+  .aws-foot-nav { grid-template-columns:1fr 1fr !important; gap:10px 18px !important; }
+}

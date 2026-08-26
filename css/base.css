@@ -1,0 +1,64 @@
+/* Aqua Well Spring · reset, tipografia base y utilidades */
+
+*, *::before, *::after { box-sizing:border-box; }
+body { margin:0; background:#F1F7FD; color:#0A2F6B; font-family:Manrope,'Helvetica Neue',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+a { color:#1878DE; text-decoration:none; }
+a:hover { color:#0D47A1; }
+h1,h2,h3,p,ul { margin:0; }
+ul { padding:0; list-style:none; }
+summary::-webkit-details-marker { display:none; }
+input, select, button, textarea { font-family:Manrope,Helvetica,Arial,sans-serif; }
+.aws-rail { scrollbar-width:none; }
+.aws-rail::-webkit-scrollbar { display:none; }
+
+/* ══ movil: todo centrado ══
+   Peticion del cliente. Se centra el contenido de las secciones. Las listas,
+   las preguntas frecuentes y las etiquetas del formulario se dejan alineadas
+   a la izquierda: centrar texto largo lo hace mas dificil de leer. */
+
+/* con el header fijo, los enlaces de ancla aterrizaban debajo de el:
+   se reserva su alto al hacer scroll a una seccion */
+html { scroll-behavior: smooth; scroll-padding-top: 196px; }
+
+/* --- mini banner de oferta del header --- */
+.aws-offer {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 9px 18px;
+  padding: 14px clamp(14px, 3vw, 52px);
+  background: linear-gradient(90deg, #0D47A1, #1878DE);
+  color: #ffffff; font-size: 20px; font-weight: 700;
+  line-height: 1.25; text-align: center;
+}
+.aws-offer:hover { color: #ffffff; }
+.aws-offer-tag {
+  padding: 5px 14px; border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+  font-size: 15px; font-weight: 800; letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.aws-offer-price { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+.aws-offer-old { color: #B9D8F7; text-decoration: line-through; font-weight: 600; }
+.aws-offer-mo { color: #D9F2FD; }
+.aws-offer-cta {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 8px 21px; border-radius: 999px;
+  background: #ffffff; color: #0A2F6B; font-weight: 800; white-space: nowrap;
+}
+
+/* --- responsive del header (anadido por Muselevel) --- */
+
+/* con el texto un 50% mas grande, el banner se parte en dos lineas si se
+   mantienen todos los elementos: se sueltan por orden de importancia para
+   que siempre quepa en una sola linea y el header no crezca */
+
+/* moviles estrechos (iPhone SE y similares): ni precio ni CTA caben a 18px */
+
+/* --- ajustes movil (Muselevel) --- */
+/* la ultima tarjeta ancla por su borde derecho: su borde izquierdo cae
+   fuera del scroll maximo y era inalcanzable con snap mandatory */
+.aws-rail > :last-child { scroll-snap-align: end; }
+
+/* desktop: el bloque de copy dejaba de crecer solo al llegar al borde,
+   lo que empujaba los tanques al extremo derecho y abria un hueco enorme
+   contra el titular. Se le pone tope y el bloque de la derecha absorbe
+   el sobrante con margin-right:auto. */
